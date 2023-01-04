@@ -1,5 +1,5 @@
-[JA] PROJEKT 1
-Letecká pošta
+# [JA] PROJEKT 1
+## Letecká pošta
 - mezi městy států
 - načíst z csv/xml souboru balíky - kde jsou a kam mají jít (oboje města)
 - algoritmus pro hledání cest (najít nějakou knihovnu)
@@ -8,8 +8,8 @@ Letecká pošta
 - testy - Spock framework (groovy)
 - gradle, knihovny
 
-[JA] PROJEKT 2
-Framework pro webovou aplikaci
+# [JA] PROJEKT 2
+## Framework pro webovou aplikaci
 - vytvorit system, kde se nadefinuje kus kodu, ktery se provola, kdyz uzivatel neco udela
 - provolani jednoduche databazove dotazy
 - dependenci injection
@@ -23,8 +23,8 @@ Framework pro webovou aplikaci
 - celé propojit, udělat jeden controller
 - nejde o to naimplementovat systém, ale vytvořit ten framework
 
-[JA] PROJEKT 3
-Jednoducha rest aplikace ve springu
+# [JA] PROJEKT 3
+## Jednoducha rest aplikace ve springu
 - s aspoň jednou operáciou Create, Update, Delete, Read. Tiež pridať nejakú biznis logiku alebo niečo čo sme robili v posledných cvikách (monitoring...).
 - napojeno na databazi
 - muzeme si zkusit i pripojit keycloak nebo cokoliv, co jsme zkouseli na cvicenich od zadani druheho
