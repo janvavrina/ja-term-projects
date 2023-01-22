@@ -70,8 +70,8 @@ class CountryService {
 
         var countCountries = jdbcTemplate.batchUpdate(
             "insert into countries (cca3, capital, capital_lat, capital_lng) values (?, ?, ?, ?)", 
-            countries, 
-            100,
+            countries,
+            10000,
             (ps, country) -> {
                 log.debug("Create county {}", country);
                 var c = (ForignCountry) country;
@@ -85,7 +85,7 @@ class CountryService {
         jdbcTemplate.batchUpdate(
             "insert into boarders (country_cca3, neighbour_cca3) values (?, ?)",
             countries.stream().flatMap(ForignCountry::getNeighbours).toList(),
-            100,
+            5000,
             (ps, neighbour) -> {
                 log.trace("Create border {}", neighbour);
                 ps.setString(1, neighbour.country_cca3);
