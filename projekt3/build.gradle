@@ -35,6 +35,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.0.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
 }
 
 tasks.named('test') {

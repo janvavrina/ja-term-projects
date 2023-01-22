@@ -3,13 +3,17 @@ package cz.mendelu.ja.xvavrina.projekt3.User;
 import cz.mendelu.ja.xvavrina.projekt3.Team.Team;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @Nonnull
