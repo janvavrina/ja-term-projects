@@ -2,6 +2,7 @@ package cz.mendelu.ja.xvavrina.projekt3.Tournament;
 
 import cz.mendelu.ja.xvavrina.projekt3.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +14,11 @@ import java.util.Map;
 @RequestMapping("/tournaments")
 public class TournamentController {
     @Autowired
-    private TournamentRepository tournamentRepository;
+    private TournamentService tournamentService;
 
     @GetMapping("")
     public List<Tournament> getAllTournaments(){
-        return tournamentRepository.findAll();
+        return tournamentService.getAllTournaments();
     }
 
     /**
@@ -27,8 +28,7 @@ public class TournamentController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Tournament> getTournamentById(@PathVariable Integer id){
-        Tournament tournament = tournamentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tournament with this ID does not exist."));
-        return ResponseEntity.ok(tournament);
+        return ResponseEntity.ok(tournamentService.findTournamentById(id));
     }
 
     /**
@@ -37,26 +37,16 @@ public class TournamentController {
      * @return
      */
     Tournament createTournament(@RequestBody Tournament tournament){
-        return tournamentRepository.save(tournament);
+        return tournamentService.createTournament(tournament);
     }
 
     public ResponseEntity<Tournament> updateTournament(@PathVariable Integer id, @RequestBody Tournament tournamentBody){
-        Tournament tournament = tournamentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tournament with this ID does not exist."));
-
-        tournament.setDate(tournamentBody.getDate());
-        tournament.setName(tournamentBody.getName());
-        tournament.setDescription(tournamentBody.getDescription());
-        tournament.setTeamSize(tournamentBody.getTeamSize());
-        tournament.setLocation(tournamentBody.getLocation());
-
-        Tournament updatedTournament = tournamentRepository.save(tournament);
-        return ResponseEntity.ok(updatedTournament);
+        Tournament updatedTournament = tournamentService.updateTournament(id, tournamentBody);
+        return new ResponseEntity(updatedTournament,HttpStatus.ACCEPTED);
     }
 
     public ResponseEntity<Map<String,Boolean>> deleteTournament(@PathVariable Integer id){
-        Tournament tournament = tournamentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tournament with this ID does not exist."));
-
-        tournamentRepository.delete(tournament);
+        tournamentService.deleteTournament(id);
 
         Map<String,Boolean> response = new HashMap<>();
         response.put("Successfully deleted.",Boolean.TRUE);
