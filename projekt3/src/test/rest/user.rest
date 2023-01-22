@@ -1,5 +1,5 @@
 ### Send POST request with json body
-POST http://localhost:8080/projekt3/v1/users/create
+POST http://localhost:8080/users/create
 Content-Type: application/json
 
 {

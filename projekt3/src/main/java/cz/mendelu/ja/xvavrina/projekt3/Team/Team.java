@@ -6,8 +6,6 @@ import lombok.Data;
 
 import java.util.List;
 
-import static jakarta.persistence.CascadeType.ALL;
-
 @Entity
 @Table(name = "teams")
 @Data
@@ -16,6 +14,6 @@ public class Team {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     private List<User> players;
 }

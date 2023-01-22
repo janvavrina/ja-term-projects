@@ -1,0 +1,24 @@
+### Send POST request with json body
+POST http://localhost:8080/teams/create
+Content-Type: application/json
+
+{
+"name": "Hustej team",
+"players":
+[
+  {
+    "id": "7f905a0b-bb6e-11e3-9e8f-000000000000"
+  },
+  {
+    "id": "7f905a0b-bb6e-11e3-9e8f-000000000002"
+  }
+]
+}
+
+###
+
+DELETE http://localhost:8080/teams/Hustej-team/delete
+Content-Type: application/json
+
+{
+}

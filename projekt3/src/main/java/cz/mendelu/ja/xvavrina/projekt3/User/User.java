@@ -33,6 +33,6 @@ public class User {
     private String username;
 
     @JoinColumn(name = "teams_name")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 }
