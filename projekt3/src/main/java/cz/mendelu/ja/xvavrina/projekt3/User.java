@@ -20,6 +20,9 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "username")
+    private String username;
+
     public UUID getId() {
         return id;
     }
@@ -52,12 +55,21 @@ public class User {
         this.email = email;
     }
 
-    public User() {}
+    public String getUsername() {
+        return username;
+    }
 
-    public User(String firstName, String lastName, String email) {
-        super();
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public User(String firstName, String lastName, String email, String username) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.username = username;
+    }
+
+    public User() {
     }
 }
