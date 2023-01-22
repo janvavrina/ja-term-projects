@@ -1,9 +1,7 @@
-package cz.mendelu.ja.xvavrina.projekt3;
+package cz.mendelu.ja.xvavrina.projekt3.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import cz.mendelu.ja.xvavrina.projekt3.User;
 
 import java.util.UUID;
 

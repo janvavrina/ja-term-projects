@@ -1,5 +1,6 @@
-package cz.mendelu.ja.xvavrina.projekt3;
+package cz.mendelu.ja.xvavrina.projekt3.User;
 
+import cz.mendelu.ja.xvavrina.projekt3.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
