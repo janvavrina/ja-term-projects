@@ -2,6 +2,7 @@ package cz.mendelu.ja.xvavrina.projekt3.User;
 
 import cz.mendelu.ja.xvavrina.projekt3.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +15,14 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     /**
      * endpoint for returing all users
      * @return List of all users
      */
     @GetMapping("")
-    public List<User> getAllUsers(){return userRepository.findAll();}
+    public List<User> getAllUsers(){return userService.getAllUsers();}
 
     /**
      * endpoint for returing one user found by ID
@@ -30,8 +31,8 @@ public class UserController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserByUUID(@PathVariable UUID id){
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with this ID does not exist"));
-        return ResponseEntity.ok(user);
+        User user = userService.getById(id);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 
     /**
@@ -40,7 +41,7 @@ public class UserController {
      * @return the new user
      */
     @PostMapping("/create")
-    public User createUser(@RequestBody User user){return userRepository.save(user);}
+    public User createUser(@RequestBody User user){return userService.createUser(user);}
 
     /**
      * endpoint for updating one user
@@ -50,15 +51,9 @@ public class UserController {
      */
     @PutMapping("/{id}/update")
     public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User userBody){
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with this ID does not exist"));
+        User updatedUser = userService.updateUser(id, userBody);
 
-        user.setFirstName(userBody.getFirstName());
-        user.setLastName(userBody.getLastName());
-        user.setEmail(userBody.getEmail());
-        user.setUsername(userBody.getUsername());
-
-        User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
+        return new ResponseEntity(updatedUser,HttpStatus.ACCEPTED);
     }
 
     /**
@@ -68,9 +63,7 @@ public class UserController {
      */
     @DeleteMapping("/{id}/delete")
     public ResponseEntity<Map<String,Boolean>> deleteUser(@PathVariable UUID id){
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with this ID does not exist"));
-
-        userRepository.delete(user);
+        userService.deleteUser(id);
 
         Map<String,Boolean> response = new HashMap<>();
         response.put("Successfully deleted.",Boolean.TRUE);
