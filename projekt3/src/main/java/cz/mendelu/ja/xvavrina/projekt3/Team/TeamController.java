@@ -24,34 +24,39 @@ public class TeamController {
 
     /**
      * endpoint for returning all teams
+     *
      * @return all teams
      */
     @GetMapping("")
-    public List<Team> getAllTeams(){return teamRepository.findAll();}
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();
+    }
 
     /**
      * endpoint for returing one team found by name
+     *
      * @param name
      * @return one found team
      */
     @GetMapping("/{name}")
-    public ResponseEntity<Team> getTeamByName(@PathVariable String name){
+    public ResponseEntity<Team> getTeamByName(@PathVariable String name) {
         Team team = teamRepository.findById(name).orElseThrow(() -> new ResourceNotFoundException("Team with this name does not exist"));
         return ResponseEntity.ok(team);
     }
 
     /**
      * endpoint for creating team and adding team to players
+     *
      * @param team
      * @return new team
      */
     @PostMapping("/create")
-    Team createTeam(@RequestBody Team team){
+    Team createTeam(@RequestBody Team team) {
         team.setName(team.getName().replace(' ', '-'));
         teamRepository.save(team);
         var players = team.getPlayers();
         for (User player : players) {
-            if (player.getTeam() == null){
+            if (player.getTeam() == null) {
                 var user = userRepository.findById(player.getId());
                 if (user.isPresent()) {
                     user.get().setTeam(team);
@@ -63,7 +68,7 @@ public class TeamController {
     }
 
     @PutMapping("/{name}/update")
-    public ResponseEntity<Team> updateTeam(@PathVariable String name, @RequestBody Team teamBody){
+    public ResponseEntity<Team> updateTeam(@PathVariable String name, @RequestBody Team teamBody) {
         Team team = teamRepository.findById(name).orElseThrow(() -> new ResourceNotFoundException("Team with this name does not exist."));
 
         team.setName(teamBody.getName());
@@ -74,13 +79,21 @@ public class TeamController {
     }
 
     @DeleteMapping("/{name}/delete")
-    public ResponseEntity<Map<String, Boolean>> deleteTeam(@PathVariable String name){
+    public ResponseEntity<Map<String, Boolean>> deleteTeam(@PathVariable String name) {
         Team team = teamRepository.findById(name).orElseThrow(() -> new ResourceNotFoundException("Team with this name does not exist."));
+
+        var players = team.getPlayers();
+        for (User player : players) {
+            if (player.getTeam() != null){
+                player.setTeam(null);
+                userRepository.save(player);
+            }
+        }
 
         teamRepository.delete(team);
 
-        Map<String,Boolean> response = new HashMap<>();
-        response.put("Successfully deleted.",Boolean.TRUE);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Successfully deleted.", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 }
