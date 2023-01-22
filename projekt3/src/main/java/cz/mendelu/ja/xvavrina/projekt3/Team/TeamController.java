@@ -67,6 +67,12 @@ public class TeamController {
         return team;
     }
 
+    /**
+     * endpoint for changing teams name or players
+     * @param name
+     * @param teamBody
+     * @return
+     */
     @PutMapping("/{name}/update")
     public ResponseEntity<Team> updateTeam(@PathVariable String name, @RequestBody Team teamBody) {
         Team team = teamRepository.findById(name).orElseThrow(() -> new ResourceNotFoundException("Team with this name does not exist."));
@@ -78,6 +84,11 @@ public class TeamController {
         return ResponseEntity.ok(updatedTeam);
     }
 
+    /**
+     * endpoint for deleting team and removing team from user
+     * @param name
+     * @return
+     */
     @DeleteMapping("/{name}/delete")
     public ResponseEntity<Map<String, Boolean>> deleteTeam(@PathVariable String name) {
         Team team = teamRepository.findById(name).orElseThrow(() -> new ResourceNotFoundException("Team with this name does not exist."));

@@ -39,7 +39,7 @@ public class Tournament {
 
     @Column(name = "team_size")
     @Nonnull
-    private Integer team_size;
+    private Integer teamSize;
 
     @Nonnull
     @Enumerated(EnumType.STRING)
