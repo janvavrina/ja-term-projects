@@ -8,6 +8,21 @@
 - testy - Spock framework (groovy)
 - gradle, knihovny
 
+### Prerekvizity
+Docker
+Java JDK 17+ Temurin
+
+### Setup
+Go to project folder
+```
+docker-compose up
+run Letecka-Posta application
+```
+In shell
+```
+shell:>insert-countries
+```
+
 # [JA] PROJEKT 2
 ## Framework pro webovou aplikaci
 - vytvorit system, kde se nadefinuje kus kodu, ktery se provola, kdyz uzivatel neco udela
@@ -28,3 +43,10 @@
 - s aspoň jednou operáciou Create, Update, Delete, Read. Tiež pridať nejakú biznis logiku alebo niečo čo sme robili v posledných cvikách (monitoring...).
 - napojeno na databazi
 - muzeme si zkusit i pripojit keycloak nebo cokoliv, co jsme zkouseli na cvicenich od zadani druheho
+
+### Setup
+Go to project folder
+```
+docker-compose up
+run Projekt3 application
+```
