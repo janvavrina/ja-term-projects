@@ -9,7 +9,7 @@
 - gradle, knihovny
 
 ### Prerekvizity
-Docker
+Docker  
 Java JDK 17+ Temurin
 
 ### Setup
@@ -43,6 +43,10 @@ shell:>insert-countries
 - s aspoň jednou operáciou Create, Update, Delete, Read. Tiež pridať nejakú biznis logiku alebo niečo čo sme robili v posledných cvikách (monitoring...).
 - napojeno na databazi
 - muzeme si zkusit i pripojit keycloak nebo cokoliv, co jsme zkouseli na cvicenich od zadani druheho
+
+### Prerekvizity
+Docker  
+Java JDK 17+ Temurin
 
 ### Setup
 Go to project folder
