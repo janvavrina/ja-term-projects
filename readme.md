@@ -23,21 +23,6 @@ In shell
 shell:>insert-countries
 ```
 
-# [JA] PROJEKT 2
-## Framework pro webovou aplikaci
-- vytvorit system, kde se nadefinuje kus kodu, ktery se provola, kdyz uzivatel neco udela
-- provolani jednoduche databazove dotazy
-- dependenci injection
-- service (dependenci injection)
-- vytvořit jednoduchý framework
-- lombok
-- reflexe
-- servlet api, někde poslouchá na portu?
-- jednoduchá databázová věc - napojení - jdbc connection, username, password, driver
-- jdbc template
-- celé propojit, udělat jeden controller
-- nejde o to naimplementovat systém, ale vytvořit ten framework
-
 # [JA] PROJEKT 3
 ## Jednoducha rest aplikace ve springu
 - s aspoň jednou operáciou Create, Update, Delete, Read. Tiež pridať nejakú biznis logiku alebo niečo čo sme robili v posledných cvikách (monitoring...).
